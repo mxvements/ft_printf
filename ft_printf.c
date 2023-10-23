@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
+#include <ctype.h>
 //#include "libft.h"
 
 /* notes on variadic functions
@@ -41,25 +43,54 @@
  * 		After the call to va_end(), the variable argument_list is undefined. 	
  */
 
+static int	ft_putchar(char c)
+{
+	return (write(1, c, 1)); 
+}
+
+//base10 and base16 are placeholders for the moment
+//all functions to be done
+static int	var_type(char c, va_list vargs)
+{
+	if (c == 'c')
+		return (ft_putchar(va_args(vargs, int))); //int ft_putchar(va_arg(vargs, char))
+	if (c == 's')
+		return (ft_putstr(va_args(vargs, char *))); //int ft_putstr(va_args(vargs, char *))
+	if (c == 'p')
+		return (ft_putnbr_base(va_args(vargs, void *), base16));///int ft_putnbr_base(var_args(vargs, int), base = 16)
+	if (c == 'd')
+		return (ft_putnbr_base(var_args(vargs, int), base10));// int ft_putnbr_base(va_args(vargs, int), base = 10)
+	if (c == 'i')
+		return (ft_putnbr_base(var_args(vargs, int), base10))//int ft_putnbr_base(va_args(vargs, int), base = 10)
+	if (c == 'u')
+		return (ft_putnbr_base(var_args(vargs, unsigned int), base10))//int ft_putnbr(va_args(vargs, unsigned int), base = 10)
+	if (c == 'x')
+		return (ft_putnbr_lower_base(va_args(vargs, int), base16));//int ft_putnbr_base(va_args, int)) using ft_tolower()
+	if (c == 'X')
+		return (ft_putnbr_upper_base(va_args(vargs, int), base16));//int ft_putnbr_bse(va_args, int)) using ft_toupper()
+	if (c == '%')
+		return (ft_putchar(var_args(vargs, c)));
+	return (0);
+}
+
+/* La funcion printf retorna el numero de caracteres impresos o un valor
+ * negativo si ocurre un error. 
+*/
 int ft_printf(const char *format, ...)
 {
 	va_list	vargs;
 	int		len;
+	size_t	i;
 	
-	va_start(vargs, char *);
-	//...
-	//len: longitud que devuelve en consola
-	//entre medio -> va_arg();
-	//%c prints a single char -> ft_putchar(va_arg(vargs, char))
-	//%s prints a str -> ft_putstr(va_args(vargs, char *))
-	//%p prints void * -> ft_putnbr_base(var_args(vargs, int), base = 16)
-	//%d prints a decimal(10) nbr -> ft_putnbr_base(va_args(vargs, int), base = 10) **
-	//%i prints an int -> ft_putnbr(va_args(vargs, int))
-	//%u prints unsinged decimal (b 10) -> ft_putnbr(va_args(vargs, unsigned int), base = 10) **
-	//%x prints hex nbr lowercase -> ft_putnbr_base(va_args, int)) using ft_tolower()
-	//%X prints hex nbr uppercase -> ft_putnbr_bse(va_args, int)) using ft_toupper()
-	//%% prints % sign -> putchar(\%)
-	//
+	va_start(vargs, format);
+	i = 0;
+	while (format[i] != '\0')
+	{
+		if (format[i] == '%' && format[i + 1] != '\0')
+			len = var_type(format[i + 1], vargs); //if len == (-1) -> error
+		i++;
+	}
 	va_end(vargs);
+	len += (i - 1);
 	return (len);
 }
