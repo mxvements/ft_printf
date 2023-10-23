@@ -50,15 +50,25 @@ int ft_printf(const char *format, ...)
 	//...
 	//len: longitud que devuelve en consola
 	//entre medio -> va_arg();
-	//%c prints a single char -> ft_putchar(va_arg(vargs, char))
-	//%s prints a str -> ft_putstr(va_args(vargs, char *))
-	//%p prints void * -> ft_putnbr_base(var_args(vargs, int), base = 16)
-	//%d prints a decimal(10) nbr -> ft_putnbr_base(va_args(vargs, int), base = 10) **
-	//%i prints an int -> ft_putnbr(va_args(vargs, int))
-	//%u prints unsinged decimal (b 10) -> ft_putnbr(va_args(vargs, unsigned int), base = 10) **
-	//%x prints hex nbr lowercase -> ft_putnbr_base(va_args, int)) using ft_tolower()
-	//%X prints hex nbr uppercase -> ft_putnbr_bse(va_args, int)) using ft_toupper()
-	//%% prints % sign -> putchar(\%)
+	//
+	//%c prints a single char
+	//		-> ft_putchar(va_arg(vargs, char))
+	//%s prints a str
+	//		-> ft_putstr(va_args(vargs, char *))
+	//%p prints void *
+	//		-> ft_putnbr_base(var_args(vargs, int), base = 16)
+	//%d prints a decimal(10) nbr
+	//		-> ft_putnbr_base(va_args(vargs, int), base = 10) **
+	//%i prints an int
+	//		-> ft_putnbr(va_args(vargs, int))
+	//%u prints unsinged decimal (b 10)
+	//		-> ft_putnbr(va_args(vargs, unsigned int), base = 10) **
+	//%x prints hex nbr lowercase
+	//		-> ft_putnbr_base(va_args, int)) using ft_tolower()
+	//%X prints hex nbr uppercase
+	//		-> ft_putnbr_bse(va_args, int)) using ft_toupper()
+	//%% prints % sign
+	//		-> putchar(\%)
 	//
 	va_end(vargs);
 	return (len);
