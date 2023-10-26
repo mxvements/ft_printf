@@ -12,6 +12,7 @@
 
 #include <stdarg.h>
 #include <ctype.h>
+#include "ft_printf_utils.h"
 //#include "libft.h"
 
 /* notes on variadic functions
@@ -75,7 +76,6 @@ static int	var_type(char c, va_list vargs, int i)
 
 static int	putflag(const char c, int spc, int pls, int hsh, va_list vargs)
 {
-	return()
 	//use ft_putchar to print the char(s) corresponding for the flags
 	//return if no error, de amount of chars printed by the flags
 	return (-1);
@@ -128,10 +128,11 @@ static int flag_type(const char *s, va_list vargs)
 */
 int ft_printf(const char *format, ...)
 {
-	va_list	vargs;
-	int		len;
-	size_t	count;
-	size_t	i;
+	va_list		vargs;
+	int			len;
+	size_t		count;
+	size_t		i;
+	placeholder	plh;
 	
 	va_start(vargs, format);
 	i = 0;

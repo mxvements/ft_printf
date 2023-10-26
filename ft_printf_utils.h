@@ -14,13 +14,13 @@
 # define PRINTF_UTILS_H
 # include <ctype.h>
 
-typedef struct placeholder
+typedef struct	placeholder
 {
 	int		*plus_flag;
 	int		*hash_flag;
 	int		*space_flag;
-	size_t	*i;
+	char	specifier;
 	char	*format;
-}
+}				placeholder;
 
 #endif
