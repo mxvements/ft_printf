@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_utils1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luciama2 <luciama2@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -19,31 +19,6 @@ static int	ft_printchar(interp_var *plh, char c)
 }
 
 static int ft_printstr(interp_var *plh, char *s)
-{
-
-}
-
-static int ft_printnbr_base(interp_var *plh, void *nbr, char *base)
-{
-
-}
-
-static int ft_printnbr_base(interp_var *plh, int nbr, char *base)
-{
-
-}
-
-static int ft_printnbr_base(interp_var *plh, unsigned int nbr, char *base)
-{
-
-}
-
-static int ft_printnbr_lower_base(interp_var *plh, int nbr, char *base)
-{
-
-}
-
-static int ft_printfnbr_upper_base(interp_var *plh, int nbr, char *base)
 {
 
 }

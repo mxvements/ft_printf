@@ -68,7 +68,7 @@ int ft_printf(const char *format, ...)
 			update_interp_var((format + i), &plh); //returns i, amount itereated
 			if (check_interp_var(&plh) == -1)
 				//error in the variable interpolation, does not apply flags' rules
-			len += ;
+			//len += ;
 			//if len == (-1) -> error
 			//else len += (count) y count = 0,
 			//update i with update_interp_var (which iterates through the format)
