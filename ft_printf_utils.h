@@ -14,13 +14,12 @@
 # define PRINTF_UTILS_H
 # include <ctype.h>
 
-typedef struct	placeholder
+typedef struct	interpolated_var
 {
-	int		*plus_flag;
-	int		*hash_flag;
-	int		*space_flag;
+	int		plus_flag;
+	int		hash_flag;
+	int		space_flag;
 	char	specifier;
-	char	*format;
-}				placeholder;
+}				interp_var;
 
 #endif
