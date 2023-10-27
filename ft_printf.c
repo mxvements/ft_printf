@@ -65,7 +65,7 @@ int ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			reset_interp_var(&plh);
-			update_interp_var((format + i), &plh); //returns i, amount itereated
+			update_interp_var((format + i), &plh);//TODO returns i, amount itereated
 			if (check_interp_var(&plh) == -1)
 				//error in the variable interpolation, does not apply flags' rules
 			//len += ;
