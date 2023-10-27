@@ -13,6 +13,10 @@
 #ifndef PRINTF_UTILS_H
 # define PRINTF_UTILS_H
 # include <ctype.h>
+# include <stdarg.h>
+# include <ctype.h>
+# include <stdio.h>
+# include <unistd.h>
 
 typedef struct	interpolated_var
 {
@@ -21,5 +25,17 @@ typedef struct	interpolated_var
 	int		space_flag;
 	char	specifier;
 }				interp_var;
+
+static int		put_interp_var(interp_var *plh, va_list vargs);
+static void 	reset_interp_var(interp_var *plh);
+static int		check_interp_var(interp_var *plh);
+static size_t	update_interp_var(const char *s, interp_var *plh);
+static int		ft_printchar(interp_var *plh, char c);
+static int		ft_printstr(interp_var *plh, char *s);
+static int		ft_printnbr_base(interp_var *plh, void *nbr, char *base);
+static int		ft_printnbr_base(interp_var *plh, int nbr, char *base);
+static int		ft_printnbr_base(interp_var *plh, unsigned int nbr, char *base);
+static int		ft_printnbr_lower_base(interp_var *plh, int nbr, char *base);
+static int		ft_printfnbr_upper_base(interp_var *plh, int nbr, char *base);
 
 #endif

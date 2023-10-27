@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <ctype.h>
-#include <stdio.h>
+
 #include "ft_printf_utils.h"
 //#include "libft.h"
 
@@ -45,115 +43,6 @@
  * 		After the call to va_end(), the variable argument_list is undefined. 	
  */
 
-static int	ft_putchar(char c)
-{
-	return (write(1, c, 1)); 
-}
-
-//base10 and base16 are placeholders for the moment
-//all functions to be done
-static int	var_type(char c, va_list vargs, int i)
-{
-	if (c == 'c') //char
-		return (i + ft_putchar(va_args(vargs, int))); //int ft_putchar(va_arg(vargs, char))
-	if (c == 's') //string
-		return (i + ft_putstr(va_args(vargs, char *))); //int ft_putstr(va_args(vargs, char *))
-	if (c == 'p') //void *
-		return (i + ft_putnbr_base(va_args(vargs, void *), base16));///int ft_putnbr_base(var_args(vargs, int), base = 16)
-	if (c == 'd') //digit, base 10
-		return (i +ft_putnbr_base(var_args(vargs, int), base10));// int ft_putnbr_base(va_args(vargs, int), base = 10)
-	if (c == 'i') //integer , base 10
-		return (i + ft_putnbr_base(var_args(vargs, int), base10));//int ft_putnbr_base(va_args(vargs, int), base = 10)
-	if (c == 'u') //unsigned int, base 10
-		return (i + ft_putnbr_base(var_args(vargs, unsigned int), base10));//int ft_putnbr(va_args(vargs, unsigned int), base = 10)
-	if (c == 'x') //hexadecimal, lowercase
-		return (i + ft_putnbr_lower_base(va_args(vargs, int), base16));//int ft_putnbr_base(va_args, int)) using ft_tolower()
-	if (c == 'X') //hexadecimal, uppercase
-		return (i + ft_putnbr_upper_base(va_args(vargs, int), base16));//int ft_putnbr_bse(va_args, int)) using ft_toupper()
-	if (c == '%') //just %
-		return (i + ft_putchar(var_args(vargs, c)));
-	return (0);
-}
-
-static int put_interp_var(interp_var *plh)
-{
-
-}
-
-/** static void reset_interp_var(interp_var *plh)
- * @brief function to apply zero to all values in the interpolated_var struc
- * @param plh 
- */
-static void reset_interp_var(interp_var *plh)
-{
-	plh->hash_flag = 0;
-	plh->plus_flag = 0;
-	plh->space_flag = 0;
-	plh->specifier = '0';
-}
- 
-/** stacic int check_interp_var(interp_var *plh)
- * @brief function to check the logic behind the application of the flags
- * and the specifiers on the format string's interpolated var.
- * Specifications:
- * 		flag ' ' is ignored when flag '+' is present
- * 		'#' flag only applies to 'x' or 'X' specifiers
- * 		'+' flag only applies to 'd' or 'i' specifiers
- * 		a permited specifier should always appear after '%'
- * 		permited flags can be missing after '%' 
- * @param plh struct interpolated_var
- * @return int 
- * 		0 if flags are ok
- * 		non-zero (-1) if error
- */
-static int check_interp_var(interp_var *plh)
-{
-	if (plh->specifier == NULL)
-		return (-1);
-	if (plh->hash_flag == 1 && (plh->specifier != 'x' || plh->specifier != 'X'))
-		retunr (-1);
-	if (plh->plus_flag == 1 && (plh->specifier != 'd' || plh->specifier != 'i'))
-		return (-1);
-	if (plh->plus_flag == 1 && plh->space_flag == 1)
-		plh->space_flag = 0;
-	return (0);
-}
-
-/** static int update_interp_var(const char *s, interp_var *plh)
- * @brief function to set all the interpolated_var attributes to their
- * corresponding value when present in the format string
- * the function iterates on the format string, returns the index at which the 
- * iteration ends 
- * @param s, format string to iterate
- * @param plh, interp_var struct
- * @return int, index at which the iteration ends
- * the function iterates the format str when the the char doesnt equivalate to
- * any of the flags & specifiers
- */
-static int update_interp_var(const char *s, interp_var *plh)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == ' ')
-			plh->space_flag = 1;
-		else if (s[i] == '#')
-			plh->hash_flag = 1;
-		else if (s[i] == '+')
-			plh->plus_flag = 1;
-		else if (s[i] =='c' || s[i] == 's' || s[i] == 'p' || s[i] == 'd' ||
-				s[i] == 'i' || s[i] == 'u' || s[i] == 'x' || s[i] == 'X' ||
-				s[i] == '%')
-		 	plh->specifier = s[i];
-		else
-			return (i);
-		i++;
-	}
-	return (i);
-}
-
 /* La funcion printf retorna el numero de caracteres impresos o un valor
  * negativo si ocurre un error. 
 */
@@ -176,14 +65,16 @@ int ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			reset_interp_var(&plh);
-			update_interp_var((format + i), &plh);
-			check_interp_var(&plh);
+			update_interp_var((format + i), &plh); //returns i, amount itereated
+			if (check_interp_var(&plh) == -1)
+				//error in the variable interpolation, does not apply flags' rules
 			len += ;
 			//if len == (-1) -> error
 			//else len += (count) y count = 0,
-			//habrá que sumar lo que ya haya leido y resetear el count a 0
+			//update i with update_interp_var (which iterates through the format)
 		}
-		i++;
+		else
+			i++;
 	}
 	va_end(vargs);
 	return (count);
