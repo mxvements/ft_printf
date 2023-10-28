@@ -12,13 +12,27 @@
 
 # include "ft_printf_utils.h"
 
-static int	ft_printchar(interp_var *plh, char c)
+static size_t	ft_printchar(interp_var *plh, char c)
 {
-	//if space flag, print also a space
-	return (write(1, c, 1)); 
+	size_t	count;
+
+	count = 0;
+	if (plh->space_flag == 1)
+		count += write(1, ' ', 1);
+	count += write(1, c, 1);
+	return (count); 
 }
 
-static int ft_printstr(interp_var *plh, char *s)
+static size_t ft_printstr(interp_var *plh, char *s)
 {
+	size_t	count;
+	size_t	i;
 
+	count = 0;
+	i = 0;
+	if (plh->space_flag == 1)
+		count += write(1, ' ', 1);
+	while (s[i++] != '\0')
+		count += write(1, s[i], 1);
+	return (count);	
 }

@@ -12,9 +12,9 @@
 
 # include "ft_printf_utils.h"
 
-/**
- * @brief 
- * 
+/** static int put_interp_var(interp_var *plh, va_list vargs)
+ * @brief function to choose each print function based on the specifier in the
+ * interpolated var 
  * @param plh 
  * @param vargs 
  * @return int 
