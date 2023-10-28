@@ -12,27 +12,67 @@
 
 # include "ft_printf_utils.h"
 
-static int ft_printnbr_base(interp_var *plh, void *nbr, char *base)
+//void *-> pointer address
+//no flags apply to this specifier
+//since its a memory address, should always be positive
+static size_t ft_printnbr_v_base(t_interp *plh, void *nbr, char *b)
 {
+	size_t			len;
+	int				nb;
+	const size_t	b_size = ft_strlen(b);
 
+	nb = nbr; //check this
+	len = 0;
+	len += write(1, "0x", 2);
+	if (nb >= b_size)
+		ft_putnbr_base(nb, b, &b_size, &len);
+	return (len);
 }
 
-static int ft_printnbr_base(interp_var *plh, int nbr, char *base)
+static size_t ft_printnbr_base(t_interp *plh, int nbr, char *b)
 {
+	size_t			len;
+	const size_t	b_size = ft_strlen(b);
 
+	if (nbr < 0)
+	{
+		plh->sign = '-';
+		nbr *= (-1);
+	}
+	len = 0;
+	if (plh->plus_flag == 1)
+		len += write(1, plh->sign, 1);
+	if (nbr >= b_size)
+		ft_putnbr_base((unsigned int)nbr, b, &b_size, &len);
+	return (len);
 }
 
-static int ft_printnbr_base(interp_var *plh, unsigned int nbr, char *base)
+static size_t ft_printnbr_u_base(t_interp *plh, unsigned int nbr, char *b)
 {
+	size_t			len;
+	const size_t	b_size = ft_strlen(b);
 
+	len = 0;
+	if (plh->plus_flag == 1)
+		len += write(1, plh->sign, 1);
+	if (nbr >= b_size)
+		ft_putnbr_base(nbr, b, &b_size, &len);
+	return (len);
 }
 
-static int ft_printnbr_lower_base(interp_var *plh, int nbr, char *base)
+static size_t ft_printnbr_lower_base(t_interp *plh, int nbr, char *b)
 {
+	size_t			len;
+	const size_t	b_size = ft_strlen(b);
 
+	len = 0;
+	return (len);
 }
 
-static int ft_printfnbr_upper_base(interp_var *plh, int nbr, char *base)
+static size_t ft_printfnbr_upper_base(t_interp *plh, int nbr, char *b)
 {
+	size_t	len;
 
+	len = 0;
+	return (len);
 }

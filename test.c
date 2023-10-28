@@ -56,6 +56,7 @@ int	main(void)
 	//%d
 	rslt = printf("+ d: %+d\n", 17);
 	printf("+ d, len: %d\n", rslt);
+	printf("\n");
 
 	//%i
 
@@ -68,17 +69,26 @@ int	main(void)
 	printf("x, len: %d\n", rslt);
 	rslt = printf("#x: %#x\n", 17);
 	printf("#x, len: %d\n", rslt);
+	printf("\n");
 
 	//%X
 	rslt = printf("X: %X\n", 17);
-	printf("X, eln: %X", rslt);
+	printf("X, len: %d", rslt);
 	rslt = printf("#X: %#X\n", 17);
 	printf("#X, len: %d\n", rslt);
+	printf("\n");
 
 	//%p
+	int	nbr = 17;
+	void *ptr = &nbr;
+	rslt = printf("p: % p\n", ptr);
+	printf("p, len: %d", rslt);
+	printf("\n");
 
 	//%%
-	rslt = printf("perc: %%%c\n", 'a');
-	printf("perc, len: %d\n", rslt);
+	rslt = printf("percentage: %%%c\n", 'a');
+	printf("percentage, len: %d\n", rslt);
+	printf("\n");
 
+	return (0);
 }

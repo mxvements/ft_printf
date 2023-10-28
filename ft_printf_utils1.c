@@ -12,27 +12,38 @@
 
 # include "ft_printf_utils.h"
 
-static size_t	ft_printchar(interp_var *plh, char c)
+static size_t	ft_printchar(t_interp *plh, char c)
 {
-	size_t	count;
+	size_t	len;
 
-	count = 0;
+	len = 0;
 	if (plh->space_flag == 1)
-		count += write(1, ' ', 1);
-	count += write(1, c, 1);
-	return (count); 
+		len += write(1, ' ', 1);
+	len += write(1, c, 1);
+	return (len); 
 }
 
-static size_t ft_printstr(interp_var *plh, char *s)
+static size_t ft_printstr(t_interp *plh, char *s)
 {
-	size_t	count;
+	size_t	len;
 	size_t	i;
 
-	count = 0;
+	len = 0;
 	i = 0;
 	if (plh->space_flag == 1)
-		count += write(1, ' ', 1);
+		len += write(1, ' ', 1);
 	while (s[i++] != '\0')
-		count += write(1, s[i], 1);
-	return (count);	
+		len += write(1, s[i], 1);
+	return (len);	
+}
+
+static void	ft_putnbr_base(unsigned int nb, char *b, size_t *sb, size_t *l)
+{
+	char	c;
+
+	if (nb >= *sb)
+		ft_putnbr_base((nb / *sb), b, sb, l);
+	c = b[nb % *sb];
+	*l += write(1, &c, 1); //for the future, check if this works
+	return ;
 }

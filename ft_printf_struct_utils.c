@@ -19,7 +19,7 @@
  * @param vargs 
  * @return int 
  */
-static int	put_interp_var(interp_var *plh, va_list vargs)
+static int	put_interp_var(t_interp *plh, va_list vargs)
 {
 	char	*base10;
 	char	*base16;
@@ -31,13 +31,11 @@ static int	put_interp_var(interp_var *plh, va_list vargs)
 	if (plh->specifier == 's') //string
 		return (ft_printstr(plh, va_arg(vargs, char *)));
 	if (plh->specifier == 'p') //void *
-		return (ft_printnbr_base(plh, va_arg(vargs, void *), base16));
-	if (plh->specifier == 'd') //digit, base 10
-		return (ft_printnbr_base(plh, va_arg(vargs, int), base10));
-	if (plh->specifier == 'i') //integer , base 10
+		return (fft_printnbr_v_base(plh, va_arg(vargs, void *), base16));
+	if (plh->specifier == 'd' || plh->specifier == 'i') //digit or int, base 10
 		return (ft_printnbr_base(plh, va_arg(vargs, int), base10));
 	if (plh->specifier == 'u') //unsigned int, base 10
-		return (ft_printnbr_base(plh, va_arg(vargs, unsigned int), base10));
+		return (ft_printnbr_u_base(plh, va_arg(vargs, unsigned int), base10));
 	if (plh->specifier == 'x') //hexadecimal, lowercase
 		return (ft_printnbr_lower_base(plh, va_arg(vargs, int), base16));
 	if (plh->specifier == 'X') //hexadecimal, uppercase
@@ -51,12 +49,13 @@ static int	put_interp_var(interp_var *plh, va_list vargs)
  * @brief function to apply zero to all values in the interpolated_var struc
  * @param plh 
  */
-static void	reset_interp_var(interp_var *plh)
+static void	reset_interp_var(t_interp *plh)
 {
 	plh->hash_flag = 0;
 	plh->plus_flag = 0;
 	plh->space_flag = 0;
 	plh->specifier = '0';
+	plh->sign = '+';
 }
  
 /** stacic int check_interp_var(interp_var *plh)
@@ -73,7 +72,7 @@ static void	reset_interp_var(interp_var *plh)
  * 		0 if flags are ok
  * 		non-zero (-1) if error
  */
-static int	check_interp_var(interp_var *plh)
+static int	check_interp_var(t_interp *plh)
 {
 	if (plh->specifier == NULL)
 		return (-1);
@@ -97,7 +96,7 @@ static int	check_interp_var(interp_var *plh)
  * the function iterates the format str when the the char doesnt equivalate to
  * any of the flags & specifiers
  */
-static size_t	update_interp_var(const char *s, interp_var *plh)
+static size_t	update_interp_var(const char *s, t_interp *plh)
 {
 	size_t	i;
 

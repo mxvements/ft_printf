@@ -52,7 +52,7 @@ int ft_printf(const char *format, ...)
 	int			len;
 	size_t		count;
 	size_t		i;
-	interp_var	plh;
+	t_interp	plh;
 	
 	va_start(vargs, format);
 	i = 0;
