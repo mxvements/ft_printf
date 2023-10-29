@@ -6,7 +6,7 @@
 /*   By: luciama2 <luciama2@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:06:33 by luciama2          #+#    #+#             */
-/*   Updated: 2023/10/28 15:49:59 by luciama2         ###   ########.fr       */
+/*   Updated: 2023/10/29 20:50:54 by luciama2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int ft_printf(const char *format __attribute__((format(printf, 1, 2))), ...)
 	{
 		if (format[i] == '%')
 		{
-			reset_interp_var(&plh);
 			i += update_interp_var((format + i), &plh);
 			if (check_interp_var(&plh) == -1)
 				return (-1); //error

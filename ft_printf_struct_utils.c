@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf.h"
+#include "ft_printf.h"
 
 /** static int put_interp_var(interp_var *plh, va_list vargs)
  * @brief function to choose each print function based on the specifier in the
@@ -41,7 +41,7 @@ static int	put_interp_var(t_interp *plh, va_list vargs)
 	if (plh->specifier == 'x') //hexadecimal, lowercase
 		return (ft_printnbr_x_base(plh, va_arg(vargs, int), base16lower));
 	if (plh->specifier == 'X') //hexadecimal, uppercase
-		return (ft_printnbr_X_base(plh, va_arg(vargs, int), base16upper));
+		return (ft_printfnbr_xupp_base(plh, va_arg(vargs, int), base16upper));
 	if (plh->specifier == '%') //just %,
 		return (ft_printchar(plh, '%'));
 	return (0);
@@ -59,7 +59,7 @@ static void	reset_interp_var(t_interp *plh)
 	plh->specifier = '0';
 	plh->sign = '+';
 }
- 
+
 /** stacic int check_interp_var(interp_var *plh)
  * @brief function to check the logic behind the application of the flags
  * and the specifiers on the format string's interpolated var.
@@ -103,6 +103,7 @@ static size_t	update_interp_var(const char *s, t_interp *plh)
 	size_t	i;
 
 	i = 0;
+	reset_interp_var(plh);
 	while (s[i] != '\0')
 	{
 		if (s[i] == ' ')
@@ -111,13 +112,13 @@ static size_t	update_interp_var(const char *s, t_interp *plh)
 			plh->hash_flag = 1;
 		else if (s[i] == '+')
 			plh->plus_flag = 1;
-		else if (s[i] =='c' || s[i] == 's' || s[i] == 'p' || s[i] == 'd' ||
-				s[i] == 'i' || s[i] == 'u' || s[i] == 'x' || s[i] == 'X' ||
-				s[i] == '%')
-				{
-		 			plh->specifier = s[i];
-					return (i);
-				}
+		else if (s[i] == 'c' || s[i] == 's' || s[i] == 'p' || s[i] == 'd'
+			|| s[i] == 'i' || s[i] == 'u' || s[i] == 'x' || s[i] == 'X'
+			|| s[i] == '%')
+		{
+			plh->specifier = s[i];
+			return (i);
+		}
 		else
 			return (i);
 		i++;

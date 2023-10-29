@@ -37,7 +37,7 @@ size_t	ft_printnbr_vptr_base(t_interp *plh, void *nbr, char *b);
 size_t	ft_printnbr_base(t_interp *plh, int nbr, char *b);
 size_t	ft_printnbr_u_base(t_interp *plh, unsigned int nbr, char *b);
 size_t	ft_printnbr_x_base(t_interp *plh, int nbr, char *b);
-size_t	ft_printfnbr_X_base(t_interp *plh, int nbr, char *b);
+size_t	ft_printfnbr_xupp_base(t_interp *plh, int nbr, char *b);
 void	ft_putnbr_base(unsigned long long nb, char *b, size_t *sb, size_t *len);
 
 #endif

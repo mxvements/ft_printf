@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf.h"
+#include "ft_printf.h"
 
 size_t	ft_printchar(t_interp *plh, char c)
 {
@@ -20,10 +20,10 @@ size_t	ft_printchar(t_interp *plh, char c)
 	if (plh->space_flag == 1)
 		len += write(1, ' ', 1);
 	len += write(1, c, 1);
-	return (len); 
+	return (len);
 }
 
-size_t ft_printstr(t_interp *plh, char *s)
+size_t	ft_printstr(t_interp *plh, char *s)
 {
 	size_t	len;
 	size_t	i;
@@ -34,7 +34,7 @@ size_t ft_printstr(t_interp *plh, char *s)
 		len += write(1, ' ', 1);
 	while (s[i++] != '\0')
 		len += write(1, s[i], 1);
-	return (len);	
+	return (len);
 }
 
 void	ft_putnbr_base(unsigned long long nb, char *b, size_t *sb, size_t *len)

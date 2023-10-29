@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf.h"
+#include "ft_printf.h"
 
 //void *-> pointer address
 //no flags apply to this specifier
 //since its a memory address, should always be positive
-size_t ft_printnbr_vptr_base(t_interp *plh, void *nbr, char *base)
+size_t	ft_printnbr_vptr_base(t_interp *plh, void *nbr, char *base)
 {
 	size_t				len;
 	unsigned long long	nb;
@@ -30,7 +30,7 @@ size_t ft_printnbr_vptr_base(t_interp *plh, void *nbr, char *base)
 }
 
 //int or decimal
-size_t ft_printnbr_base(t_interp *plh, int nbr, char *base)
+size_t	ft_printnbr_base(t_interp *plh, int nbr, char *base)
 {
 	size_t			len;
 	const size_t	base_size = ft_strlen(base);
@@ -48,7 +48,7 @@ size_t ft_printnbr_base(t_interp *plh, int nbr, char *base)
 	return (len);
 }
 
-size_t ft_printnbr_u_base(t_interp *plh, unsigned int nbr, char *base)
+size_t	ft_printnbr_u_base(t_interp *plh, unsigned int nbr, char *base)
 {
 	size_t			len;
 	const size_t	base_size = ft_strlen(base);
@@ -61,7 +61,7 @@ size_t ft_printnbr_u_base(t_interp *plh, unsigned int nbr, char *base)
 	return (len);
 }
 
-size_t ft_printnbr_x_base(t_interp *plh, int nbr, char *base)
+size_t	ft_printnbr_x_base(t_interp *plh, int nbr, char *base)
 {
 	size_t			len;
 	const size_t	base_size = ft_strlen(base);
@@ -74,7 +74,7 @@ size_t ft_printnbr_x_base(t_interp *plh, int nbr, char *base)
 	return (len);
 }
 
-size_t ft_printfnbr_X_base(t_interp *plh, int nbr, char *base)
+size_t	ft_printfnbr_xupp_base(t_interp *plh, int nbr, char *base)
 {
 	size_t			len;
 	const size_t	base_size = ft_strlen(base);
