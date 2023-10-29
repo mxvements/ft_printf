@@ -45,10 +45,11 @@
 /* La funcion printf retorna el numero de caracteres impresos o un valor
  * negativo si ocurre un error. 
 */
+
 int ft_printf(const char *format __attribute__((format(printf, 1, 2))), ...)
 {
 	va_list		vargs;
-	int			len;
+	size_t		out_len;
 	size_t		count;
 	size_t		i;
 	t_interp	plh;
@@ -56,7 +57,7 @@ int ft_printf(const char *format __attribute__((format(printf, 1, 2))), ...)
 	va_start(vargs, format);
 	i = 0;
 	count = 0;
-	len = 0;
+	out_len = 0;
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
@@ -64,16 +65,13 @@ int ft_printf(const char *format __attribute__((format(printf, 1, 2))), ...)
 			i += update_interp_var((format + i), &plh);
 			if (check_interp_var(&plh) == -1)
 				return (-1); //error
-			len += put_interp_var(&plh, vargs);
-			len += count;
+			out_len += put_interp_var(&plh, vargs);
+			out_len += count;
 			count = 0;
 		}
 		else
-		{
-			count += write(1, format[i], 1);
-			i++;
-		}
+			count += write(1, &format[i++], 1); //to check
 	}
-	va_end(vargs);
-	return (len);
+	va_end(vargs); 
+	return (out_len);
 }
