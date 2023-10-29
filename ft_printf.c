@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "ft_printf.h"
+# include "ft_printf.h"
 //#include "libft.h"
 
 /* notes on variadic functions
@@ -46,7 +45,7 @@
 /* La funcion printf retorna el numero de caracteres impresos o un valor
  * negativo si ocurre un error. 
 */
-int ft_printf(const char *format, ...)
+int ft_printf(const char *format __attribute__((format(printf, 1, 2))), ...)
 {
 	va_list		vargs;
 	int			len;
@@ -60,22 +59,22 @@ int ft_printf(const char *format, ...)
 	len = 0;
 	while (format[i] != '\0')
 	{
-		count++;
-		//write each char, ft_putchar(format[i]) while is not %
 		if (format[i] == '%')
 		{
 			reset_interp_var(&plh);
-			update_interp_var((format + i), &plh);//TODO returns i, amount itereated
+			i += update_interp_var((format + i), &plh);
 			if (check_interp_var(&plh) == -1)
-				//error in the variable interpolation, does not apply flags' rules
-			//len += ;
-			//if len == (-1) -> error
-			//else len += (count) y count = 0,
-			//update i with update_interp_var (which iterates through the format)
+				return (-1); //error
+			len += put_interp_var(&plh, vargs);
+			len += count;
+			count = 0;
 		}
 		else
+		{
+			count += write(1, format[i], 1);
 			i++;
+		}
 	}
 	va_end(vargs);
-	return (count);
+	return (len);
 }

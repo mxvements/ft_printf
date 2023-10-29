@@ -79,7 +79,7 @@ static int	check_interp_var(t_interp *plh)
 	if (plh->specifier == NULL)
 		return (-1);
 	if (plh->hash_flag == 1 && (plh->specifier != 'x' || plh->specifier != 'X'))
-		retunr (-1);
+		return (-1);
 	if (plh->plus_flag == 1 && (plh->specifier != 'd' || plh->specifier != 'i'))
 		return (-1);
 	if (plh->plus_flag == 1 && plh->space_flag == 1)
@@ -114,7 +114,10 @@ static size_t	update_interp_var(const char *s, t_interp *plh)
 		else if (s[i] =='c' || s[i] == 's' || s[i] == 'p' || s[i] == 'd' ||
 				s[i] == 'i' || s[i] == 'u' || s[i] == 'x' || s[i] == 'X' ||
 				s[i] == '%')
-		 	plh->specifier = s[i];
+				{
+		 			plh->specifier = s[i];
+					return (i);
+				}
 		else
 			return (i);
 		i++;
