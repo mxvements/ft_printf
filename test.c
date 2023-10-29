@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdio.h"
+# include "stdio.h"
+# include "ft_printf.h"
 
 int	main(void)
 {
@@ -78,11 +79,20 @@ int	main(void)
 	printf("#X, len: %d\n", rslt);
 	printf("\n");
 
-	//%p
-	int	nbr = 17;
-	void *ptr = &nbr;
-	rslt = printf("p: % p\n", ptr);
+	//%p, void *, prints the pointer address
+	//warning: flag ' ' results in undefined behavior with 'p' conversion specifier
+	//warning: flag '+' results in undefined behavior with 'p' conversion specifier 
+	int		nbr = 17;
+	void 	*ptr = &nbr;
+	char	*base =  "0123456789ABCDEF";
+	int 	base_size = 16;
+	int		len;
+	int		*mem = &nbr;
+	rslt = printf("p: %p\n", ptr);
 	printf("p, len: %d", rslt);
+	printf("prueba de imprimir ptr como int: %u\n", (unsigned int)mem);
+	printf("prueba de imprimir ptr como int: %lli\n", (long long)mem);
+	printf("prueba de imprimir ptr como int: %lli\n", (unsigned long long)mem);
 	printf("\n");
 
 	//%%

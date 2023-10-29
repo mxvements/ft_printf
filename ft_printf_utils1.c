@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf_utils.h"
+# include "ft_printf.h"
 
-static size_t	ft_printchar(t_interp *plh, char c)
+size_t	ft_printchar(t_interp *plh, char c)
 {
 	size_t	len;
 
@@ -23,7 +23,7 @@ static size_t	ft_printchar(t_interp *plh, char c)
 	return (len); 
 }
 
-static size_t ft_printstr(t_interp *plh, char *s)
+size_t ft_printstr(t_interp *plh, char *s)
 {
 	size_t	len;
 	size_t	i;
@@ -37,13 +37,13 @@ static size_t ft_printstr(t_interp *plh, char *s)
 	return (len);	
 }
 
-static void	ft_putnbr_base(unsigned int nb, char *b, size_t *sb, size_t *l)
+void	ft_putnbr_base(unsigned long long nb, char *b, size_t *sb, size_t *len)
 {
 	char	c;
 
 	if (nb >= *sb)
-		ft_putnbr_base((nb / *sb), b, sb, l);
+		ft_putnbr_base((nb / *sb), b, sb, len);
 	c = b[nb % *sb];
-	*l += write(1, &c, 1); //for the future, check if this works
+	*len += write(1, &c, 1); //for the future, check if this works
 	return ;
 }

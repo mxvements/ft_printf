@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_UTILS_H
-# define FT_PRINTF_UTILS_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 # include <ctype.h>
 # include <stdarg.h>
 # include <ctype.h>
@@ -27,17 +27,17 @@ typedef struct interpolated_var
 	char	sign;
 }	t_interp;
 
-static int		put_interp_var(t_interp *plh, va_list vargs);
-static void		reset_interp_var(t_interp *plh);
-static int		check_interp_var(t_interp *plh);
-static size_t	update_interp_var(const char *s, t_interp *plh);
-static size_t	ft_printchar(t_interp *plh, char c);
-static size_t	ft_printstr(t_interp *plh, char *s);
-static size_t	ft_printnbr_v_base(t_interp *plh, void *nbr, char *b);
-static size_t	ft_printnbr_base(t_interp *plh, int nbr, char *b);
-static size_t	ft_printnbr_u_base(t_interp *plh, unsigned int nbr, char *b);
-static size_t	ft_printnbr_lower_base(t_interp *plh, int nbr, char *b);
-static size_t	ft_printfnbr_upper_base(t_interp *plh, int nbr, char *b);
-static void		ft_putnbr_base(unsigned int nb, char *b, size_t *sb, size_t *l);
+int		put_interp_var(t_interp *plh, va_list vargs);
+void	reset_interp_var(t_interp *plh);
+int		check_interp_var(t_interp *plh);
+size_t	update_interp_var(const char *s, t_interp *plh);
+size_t	ft_printchar(t_interp *plh, char c);
+size_t	ft_printstr(t_interp *plh, char *s);
+size_t	ft_printnbr_vptr_base(t_interp *plh, void *nbr, char *b);
+size_t	ft_printnbr_base(t_interp *plh, int nbr, char *b);
+size_t	ft_printnbr_u_base(t_interp *plh, unsigned int nbr, char *b);
+size_t	ft_printnbr_x_base(t_interp *plh, int nbr, char *b);
+size_t	ft_printfnbr_X_base(t_interp *plh, int nbr, char *b);
+void	ft_putnbr_base(unsigned long long nb, char *b, size_t *sb, size_t *len);
 
 #endif

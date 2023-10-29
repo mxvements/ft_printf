@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf_utils.h"
+# include "ft_printf.h"
 
 /** static int put_interp_var(interp_var *plh, va_list vargs)
  * @brief function to choose each print function based on the specifier in the
@@ -22,26 +22,28 @@
 static int	put_interp_var(t_interp *plh, va_list vargs)
 {
 	char	*base10;
-	char	*base16;
+	char	*base16upper;
+	char	*base16lower;
 
 	base10 = "0123456789";
-	base16 = "0123456789ABCDEF";
+	base16upper = "0123456789ABCDEF";
+	base16upper = "0123456789abcdef";
 	if (plh->specifier == 'c') //char
 		return (ft_printchar(plh, va_arg(vargs, char)));
 	if (plh->specifier == 's') //string
 		return (ft_printstr(plh, va_arg(vargs, char *)));
 	if (plh->specifier == 'p') //void *
-		return (fft_printnbr_v_base(plh, va_arg(vargs, void *), base16));
+		return (ft_printnbr_vptr_base(plh, va_arg(vargs, void *), base16lower));
 	if (plh->specifier == 'd' || plh->specifier == 'i') //digit or int, base 10
 		return (ft_printnbr_base(plh, va_arg(vargs, int), base10));
 	if (plh->specifier == 'u') //unsigned int, base 10
 		return (ft_printnbr_u_base(plh, va_arg(vargs, unsigned int), base10));
 	if (plh->specifier == 'x') //hexadecimal, lowercase
-		return (ft_printnbr_lower_base(plh, va_arg(vargs, int), base16));
+		return (ft_printnbr_x_base(plh, va_arg(vargs, int), base16lower));
 	if (plh->specifier == 'X') //hexadecimal, uppercase
-		return (ft_printnbr_upper_base(plh, va_arg(vargs, int), base16));
-	if (plh->specifier == '%') //just %
-		return (ft_printchar(plh, va_arg(vargs, char)));
+		return (ft_printnbr_X_base(plh, va_arg(vargs, int), base16upper));
+	if (plh->specifier == '%') //just %,
+		return (ft_printchar(plh, '%'));
 	return (0);
 }
 
