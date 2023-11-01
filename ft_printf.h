@@ -31,7 +31,7 @@ int		put_interp_var(t_interp *plh, va_list vargs);
 void	reset_interp_var(t_interp *plh);
 int		check_interp_var(t_interp *plh);
 size_t	update_interp_var(const char *s, t_interp *plh);
-size_t	ft_printchar(t_interp *plh, char c);
+size_t	ft_printchar(t_interp *plh, int c);
 size_t	ft_printstr(t_interp *plh, char *s);
 size_t	ft_printnbr_vptr_base(void *nbr, char *b);
 size_t	ft_printnbr_base(t_interp *plh, int nbr, char *b);
