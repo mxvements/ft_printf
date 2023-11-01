@@ -19,7 +19,7 @@ size_t	ft_printnbr_vptr_base(void *nbr, char *base)
 {
 	size_t				len;
 	unsigned long long	nb;
-	size_t			base_size;
+	size_t				base_size;
 
 	base_size = ft_strlen(base);
 	nb = (unsigned long long)nbr; //check this

@@ -28,21 +28,21 @@ int	put_interp_var(t_interp *plh, va_list vargs)
 	base10 = "0123456789";
 	base16upper = "0123456789ABCDEF";
 	base16lower = "0123456789abcdef";
-	if (plh->specifier == 'c') //char
+	if (plh->specifier == 'c')
 		return (ft_printchar(plh, va_arg(vargs, int)));
-	if (plh->specifier == 's') //string
+	if (plh->specifier == 's')
 		return (ft_printstr(plh, va_arg(vargs, char *)));
-	if (plh->specifier == 'p') //void *
+	if (plh->specifier == 'p')
 		return (ft_printnbr_vptr_base(va_arg(vargs, void *), base16lower));
-	if (plh->specifier == 'd' || plh->specifier == 'i') //digit or int, base 10
+	if (plh->specifier == 'd' || plh->specifier == 'i')
 		return (ft_printnbr_base(plh, va_arg(vargs, int), base10));
-	if (plh->specifier == 'u') //unsigned int, base 10
+	if (plh->specifier == 'u')
 		return (ft_printnbr_u_base(plh, va_arg(vargs, unsigned int), base10));
-	if (plh->specifier == 'x') //hexadecimal, lowercase
+	if (plh->specifier == 'x')
 		return (ft_printnbr_x_base(plh, va_arg(vargs, int), base16lower));
-	if (plh->specifier == 'X') //hexadecimal, uppercase
+	if (plh->specifier == 'X')
 		return (ft_printfnbr_xupp_base(plh, va_arg(vargs, int), base16upper));
-	if (plh->specifier == '%') //just %,
+	if (plh->specifier == '%')
 		return (ft_printchar(plh, '%'));
 	return (0);
 }
@@ -102,7 +102,7 @@ size_t	update_interp_var(const char *s, t_interp *plh)
 {
 	size_t	i;
 
-	i = 0;
+	i = 1;
 	reset_interp_var(plh);
 	while (s[i] != '\0')
 	{

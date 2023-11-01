@@ -40,5 +40,6 @@ size_t	ft_printnbr_x_base(t_interp *plh, int nbr, char *b);
 size_t	ft_printfnbr_xupp_base(t_interp *plh, int nbr, char *b);
 void	ft_putnbr_base(unsigned long long nb, char *b, size_t *sb, size_t *len);
 size_t	ft_strlen(const char *s);
+int		ft_printf(const char *str, ...) __attribute__((format(printf, 1, 2)));
 
 #endif

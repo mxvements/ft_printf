@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "stdio.h"
-# include "ft_printf.h"
+#include "stdio.h"
+#include "../ft_printf.h"
 
 int	main(void)
 {
@@ -53,11 +53,15 @@ int	main(void)
 	int	rslt;
 
 	//%c
+	rslt = ft_printf("MY FUNCT: (%c) - ", 'a');
+	printf("MY FUNCT, LEN: %d\n", rslt);
+	rslt = printf("MY FUNCT: (%c) - ", 'a');
+	printf("FUNCT, LEN: %d\n", rslt);
 
 	//%d
-	rslt = printf("+ d: %+d\n", 17);
-	printf("+ d, len: %d\n", rslt);
-	printf("\n");
+	//rslt = printf("+ d: %+d\n", 17);
+	//printf("+ d, len: %d\n", rslt);
+	//printf("\n");
 
 	//%i
 
@@ -66,18 +70,18 @@ int	main(void)
 	//%u
 
 	//%x
-	rslt = printf("x: %x\n", 17);
-	printf("x, len: %d\n", rslt);
-	rslt = printf("#x: %#x\n", 17);
-	printf("#x, len: %d\n", rslt);
-	printf("\n");
+	//rslt = printf("x: %x\n", 17);
+	//printf("x, len: %d\n", rslt);
+	//rslt = printf("#x: %#x\n", 17);
+	//printf("#x, len: %d\n", rslt);
+	//printf("\n");
 
 	//%X
-	rslt = printf("X: %X\n", 17);
-	printf("X, len: %d", rslt);
-	rslt = printf("#X: %#X\n", 17);
-	printf("#X, len: %d\n", rslt);
-	printf("\n");
+	//rslt = printf("X: %X\n", 17);
+	//printf("X, len: %d", rslt);
+	//rslt = printf("#X: %#X\n", 17);
+	//printf("#X, len: %d\n", rslt);
+	//printf("\n");
 
 	//%p, void *, prints the pointer address
 	//warning: flag ' ' results in undefined behavior with 'p' conversion specifier

@@ -19,7 +19,7 @@ $(NAME): $(MY_OBJECTS)
 	ar -crs $@ $^
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c -g3 $<
 
 clean:
 	rm -rf *.o $(MY_OBJECTS)

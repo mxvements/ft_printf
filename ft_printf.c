@@ -9,8 +9,7 @@
 /*   Updated: 2023/10/29 20:50:54 by luciama2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-# include "ft_printf.h"
+#include "ft_printf.h"
 //#include "libft.h"
 
 /* notes on variadic functions
@@ -46,30 +45,31 @@
  * negativo si ocurre un error. 
 */
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *str, ...)
 {
 	va_list		vargs;
 	size_t		out_len;
 	size_t		count;
 	size_t		i;
 	t_interp	plh;
-	
-	va_start(vargs, format);
+
+	va_start(vargs, str);
 	i = 0;
 	count = 0;
 	out_len = 0;
-	while (format[i] != '\0')
+	while (str[i] != '\0')
 	{
-		if (format[i] == '%')
+		if (str[i] == '%')
 		{
-			i += update_interp_var((format + i), &plh);
+			i += update_interp_var((str + i), &plh);
 			out_len += put_interp_var(&plh, vargs);
-			out_len += count;
-			count = 0;
+			if (check_interp_var(&plh) == -1)
+				return (-1);
 		}
 		else
-			count += write(1, &format[i++], 1); //to check
+			count += write(1, &str[i], 1);
+		i++;
 	}
-	va_end(vargs); 
-	return (out_len);
+	va_end(vargs);
+	return (out_len + count);
 }
