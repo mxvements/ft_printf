@@ -19,7 +19,7 @@
  * @param vargs 
  * @return int 
  */
-static int	put_interp_var(t_interp *plh, va_list vargs)
+int	put_interp_var(t_interp *plh, va_list vargs)
 {
 	char	*base10;
 	char	*base16upper;
@@ -27,13 +27,13 @@ static int	put_interp_var(t_interp *plh, va_list vargs)
 
 	base10 = "0123456789";
 	base16upper = "0123456789ABCDEF";
-	base16upper = "0123456789abcdef";
+	base16lower = "0123456789abcdef";
 	if (plh->specifier == 'c') //char
-		return (ft_printchar(plh, va_arg(vargs, char)));
+		return (ft_printchar(plh, va_arg(vargs, int)));
 	if (plh->specifier == 's') //string
 		return (ft_printstr(plh, va_arg(vargs, char *)));
 	if (plh->specifier == 'p') //void *
-		return (ft_printnbr_vptr_base(plh, va_arg(vargs, void *), base16lower));
+		return (ft_printnbr_vptr_base(va_arg(vargs, void *), base16lower));
 	if (plh->specifier == 'd' || plh->specifier == 'i') //digit or int, base 10
 		return (ft_printnbr_base(plh, va_arg(vargs, int), base10));
 	if (plh->specifier == 'u') //unsigned int, base 10
@@ -51,7 +51,7 @@ static int	put_interp_var(t_interp *plh, va_list vargs)
  * @brief function to apply zero to all values in the interpolated_var struc
  * @param plh 
  */
-static void	reset_interp_var(t_interp *plh)
+void	reset_interp_var(t_interp *plh)
 {
 	plh->hash_flag = 0;
 	plh->plus_flag = 0;
@@ -74,9 +74,9 @@ static void	reset_interp_var(t_interp *plh)
  * 		0 if flags are ok
  * 		non-zero (-1) if error
  */
-static int	check_interp_var(t_interp *plh)
+int	check_interp_var(t_interp *plh)
 {
-	if (plh->specifier == NULL)
+	if (plh->specifier == '\0')
 		return (-1);
 	if (plh->hash_flag == 1 && (plh->specifier != 'x' || plh->specifier != 'X'))
 		return (-1);
@@ -98,7 +98,7 @@ static int	check_interp_var(t_interp *plh)
  * the function iterates the format str when the the char doesnt equivalate to
  * any of the flags & specifiers
  */
-static size_t	update_interp_var(const char *s, t_interp *plh)
+size_t	update_interp_var(const char *s, t_interp *plh)
 {
 	size_t	i;
 

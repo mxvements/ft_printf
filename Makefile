@@ -6,14 +6,20 @@ NAME=libftprintf.a
 
 TEST_NAME=libftprintf.out
 
-MY_SOURCES= ft_printf.c
+MY_SOURCES= ft_printf.c \
+			ft_printf_utils2.c \
+			ft_printf_utils1.c \
+			ft_printf_struct_utils.c
 
-MY_OBJECTS=$(MY_SOURCES:%.a=%.o)
+MY_OBJECTS=$(MY_SOURCES:%.c=%.o)
 
 all: $(NAME)
 
 $(NAME): $(MY_OBJECTS)
 	ar -crs $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $<
 
 clean:
 	rm -rf *.o $(MY_OBJECTS)

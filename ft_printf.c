@@ -46,7 +46,7 @@
  * negativo si ocurre un error. 
 */
 
-int ft_printf(const char *format __attribute__((format(printf, 1, 2))), ...)
+int ft_printf(const char *format, ...)
 {
 	va_list		vargs;
 	size_t		out_len;
@@ -63,8 +63,6 @@ int ft_printf(const char *format __attribute__((format(printf, 1, 2))), ...)
 		if (format[i] == '%')
 		{
 			i += update_interp_var((format + i), &plh);
-			if (check_interp_var(&plh) == -1)
-				return (-1); //error
 			out_len += put_interp_var(&plh, vargs);
 			out_len += count;
 			count = 0;
