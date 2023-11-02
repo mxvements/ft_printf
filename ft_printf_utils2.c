@@ -22,7 +22,7 @@ size_t	ft_printnbr_vptr_base(void *nbr, char *base)
 	size_t				base_size;
 
 	base_size = ft_strlen(base);
-	nb = (unsigned long long)nbr; //check this
+	nb = (unsigned long long)nbr;
 	len = 0;
 	len += write(1, "0x", 2);
 	ft_putnbr_base(nb, base, &base_size, &len);
@@ -57,8 +57,10 @@ size_t	ft_printnbr_u_base(t_interp *plh, unsigned int nbr, char *base)
 {
 	size_t			len;
 	size_t			base_size;
+	long long		nb;
 
 	base_size = ft_strlen(base);
+	nb = (long long)nbr;
 	len = 0;
 	if (plh->plus_flag == 1)
 		len += write(1, &(plh->sign), 1);
@@ -75,7 +77,7 @@ size_t	ft_printnbr_x_base(t_interp *plh, unsigned int nbr, char *base)
 	base_size = ft_strlen(base);
 	nb = (long long)nbr;
 	len = 0;
-	if (plh->hash_flag == 1)
+	if (plh->hash_flag == 1 && nbr != 0)
 		len += write(1, "0x", 2);
 	ft_putnbr_base((unsigned long long)nb, base, &base_size, &len);
 	return (len);
@@ -90,7 +92,7 @@ size_t	ft_printfnbr_xupp_base(t_interp *plh, unsigned int nbr, char *base)
 	base_size = ft_strlen(base);
 	nb = (long long)nbr;
 	len = 0;
-	if (plh->hash_flag == 1)
+	if (plh->hash_flag == 1 && nbr != 0)
 		len += write(1, "0X", 2);
 	ft_putnbr_base((unsigned long long)nb, base, &base_size, &len);
 	return (len);

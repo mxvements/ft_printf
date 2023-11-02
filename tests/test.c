@@ -104,18 +104,20 @@ int	main(void)
 	//%x
 	ft_printf("___USE OF (%%x) VARIABLE INTERPOLATION___\n");
 	ft_printf("_FLAGS: (%%#x)\n");
-	rslt = ft_printf("(%x) - (%#x) - (%x) - (%#x)\n", 42, 42, UINT_MAX, UINT_MAX);
+	rslt = ft_printf("(%#x) - (%x) - (%#x) - (%x) - (%#x)\n", 0, UINT_MAX, UINT_MAX, UINT_MAX, UINT_MAX);
 	ft_printf("_LEN: %i\n", rslt);
-	rslt = printf("(%x) - (%#x) - (%x) - (%#x)\n", 42, 42, UINT_MAX, UINT_MAX);
+	rslt = printf("(%#x) - (%x) - (%#x) - (%x) - (%#x)\n", 0, UINT_MAX, UINT_MAX, UINT_MAX, UINT_MAX);
 	ft_printf("_LEN: %i\n", rslt);
 	printf("\n");
 
 	//%X
-	//rslt = printf("X: %X\n", 17);
-	//printf("X, len: %d", rslt);
-	//rslt = printf("#X: %#X\n", 17);
-	//printf("#X, len: %d\n", rslt);
-	//printf("\n");
+	ft_printf("___USE OF (%%X) VARIABLE INTERPOLATION___\n");
+	ft_printf("_FLAGS: (%%#X)\n");
+	rslt = ft_printf("(%#X) - (%X) - (%#X) - (%X) - (%#X)\n", 0, UINT_MAX, UINT_MAX, UINT_MAX, UINT_MAX);
+	ft_printf("_LEN: %i\n", rslt);
+	rslt = printf("(%#X) - (%X) - (%#X) - (%X) - (%#X)\n", 0, UINT_MAX, UINT_MAX, UINT_MAX, UINT_MAX);
+	ft_printf("_LEN: %i\n", rslt);
+	printf("\n");
 
 	//%p, void *, prints the pointer address
 	//warning: flag ' ' results in undefined behavior with 'p' conversion specifier

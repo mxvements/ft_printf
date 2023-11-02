@@ -21,27 +21,27 @@
  */
 int	put_interp_var(t_interp *plh, va_list vargs)
 {
-	char	*base10;
-	char	*base16upper;
-	char	*base16lower;
+	char	*b10;
+	char	*b16u;
+	char	*b16l;
 
-	base10 = "0123456789";
-	base16upper = "0123456789ABCDEF";
-	base16lower = "0123456789abcdef";
+	b10 = "0123456789";
+	b16u = "0123456789ABCDEF";
+	b16l = "0123456789abcdef";
 	if (plh->specifier == 'c')
 		return (ft_printchar(plh, va_arg(vargs, int)));
 	if (plh->specifier == 's')
 		return (ft_printstr(plh, va_arg(vargs, char *)));
 	if (plh->specifier == 'p')
-		return (ft_printnbr_vptr_base(va_arg(vargs, void *), base16lower));
+		return (ft_printnbr_vptr_base(va_arg(vargs, void *), b16l));
 	if (plh->specifier == 'd' || plh->specifier == 'i')
-		return (ft_printnbr_base(plh, va_arg(vargs, int), base10));
+		return (ft_printnbr_base(plh, va_arg(vargs, int), b10));
 	if (plh->specifier == 'u')
-		return (ft_printnbr_u_base(plh, va_arg(vargs, unsigned int), base10));
+		return (ft_printnbr_u_base(plh, va_arg(vargs, unsigned int), b10));
 	if (plh->specifier == 'x')
-		return (ft_printnbr_x_base(plh, va_arg(vargs, unsigned int), base16lower));
+		return (ft_printnbr_x_base(plh, va_arg(vargs, unsigned int), b16l));
 	if (plh->specifier == 'X')
-		return (ft_printfnbr_xupp_base(plh, va_arg(vargs, unsigned int), base16upper));
+		return (ft_printfnbr_xupp_base(plh, va_arg(vargs, unsigned int), b16u));
 	if (plh->specifier == '%')
 		return (ft_printchar(plh, '%'));
 	return (0);
