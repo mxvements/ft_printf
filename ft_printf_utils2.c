@@ -25,8 +25,7 @@ size_t	ft_printnbr_vptr_base(void *nbr, char *base)
 	nb = (unsigned long long)nbr; //check this
 	len = 0;
 	len += write(1, "0x", 2);
-	if (nb >= base_size)
-		ft_putnbr_base(nb, base, &base_size, &len);
+	ft_putnbr_base(nb, base, &base_size, &len);
 	return (len);
 }
 
@@ -35,18 +34,22 @@ size_t	ft_printnbr_base(t_interp *plh, int nbr, char *base)
 {
 	size_t			len;
 	size_t			base_size;
+	long long		nb;
 
 	base_size = ft_strlen(base);
-	if (nbr < 0)
+	nb = (long long)nbr;
+	if (nb < 0)
 	{
+		plh->plus_flag = 1;
 		plh->sign = '-';
-		nbr *= (-1);
+		nb *= (-1);
 	}
 	len = 0;
 	if (plh->plus_flag == 1)
 		len += write(1, &(plh->sign), 1);
-	if ((size_t)nbr >= base_size)
-		ft_putnbr_base((unsigned long long)nbr, base, &base_size, &len);
+	if (plh->space_flag == 1)
+		len += write(1, " ", 1);
+	ft_putnbr_base((unsigned long long)nb, base, &base_size, &len);
 	return (len);
 }
 
@@ -59,8 +62,7 @@ size_t	ft_printnbr_u_base(t_interp *plh, unsigned int nbr, char *base)
 	len = 0;
 	if (plh->plus_flag == 1)
 		len += write(1, &(plh->sign), 1);
-	if ((size_t)nbr >= base_size)
-		ft_putnbr_base((unsigned long long)nbr, base, &base_size, &len);
+	ft_putnbr_base((unsigned long long)nbr, base, &base_size, &len);
 	return (len);
 }
 
@@ -73,8 +75,7 @@ size_t	ft_printnbr_x_base(t_interp *plh, int nbr, char *base)
 	len = 0;
 	if (plh->hash_flag == 1)
 		len += write(1, "0x", 2);
-	if ((size_t)nbr >= base_size)
-		ft_putnbr_base((unsigned long long)nbr, base, &base_size, &len);
+	ft_putnbr_base((unsigned long long)nbr, base, &base_size, &len);
 	return (len);
 }
 
@@ -87,7 +88,6 @@ size_t	ft_printfnbr_xupp_base(t_interp *plh, int nbr, char *base)
 	len = 0;
 	if (plh->hash_flag == 1)
 		len += write(1, "0X", 2);
-	if ((size_t)nbr >= base_size)
-		ft_putnbr_base((unsigned long long)nbr, base, &base_size, &len);
+	ft_putnbr_base((unsigned long long)nbr, base, &base_size, &len);
 	return (len);
 }

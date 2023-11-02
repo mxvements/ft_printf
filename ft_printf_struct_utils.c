@@ -78,9 +78,9 @@ int	check_interp_var(t_interp *plh)
 {
 	if (plh->specifier == '\0')
 		return (-1);
-	if (plh->hash_flag == 1 && (plh->specifier != 'x' || plh->specifier != 'X'))
+	if (plh->hash_flag == 1 && (plh->specifier != 'x' && plh->specifier != 'X'))
 		return (-1);
-	if (plh->plus_flag == 1 && (plh->specifier != 'd' || plh->specifier != 'i'))
+	if (plh->plus_flag == 1 && (plh->specifier != 'd' && plh->specifier != 'i'))
 		return (-1);
 	if (plh->plus_flag == 1 && plh->space_flag == 1)
 		plh->space_flag = 0;

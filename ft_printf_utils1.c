@@ -41,6 +41,7 @@ void	ft_putnbr_base(unsigned long long nb, char *b, size_t *sb, size_t *len)
 {
 	char	c;
 
+	
 	if (nb >= *sb)
 		ft_putnbr_base((nb / *sb), b, sb, len);
 	c = b[nb % *sb];
