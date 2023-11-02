@@ -30,6 +30,8 @@ fclean: clean
 tclean: fclean
 	rm -rf $(TEST_NAME)
 
+bonus: all
+
 norminette:
 	norminette $(MY_SOURCES)
 

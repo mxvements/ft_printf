@@ -93,13 +93,22 @@ int	main(void)
 	printf("\n");
 
 	//%u
+	ft_printf("___USE OF (%%u) VARIABLE INTERPOLATION___\n");
+	ft_printf("_FLAGS: n/a, ' ' and '+' results undefined behaviour\n");
+	rslt = ft_printf("(%u) - (%u)\n", (unsigned int)17, UINT_MAX);
+	ft_printf("_LEN: %i\n", rslt);
+	rslt = printf("(%u) - (%u)\n", (unsigned int)17, UINT_MAX);
+	ft_printf("_LEN: %i\n", rslt);
+	printf("\n");
 
 	//%x
-	//rslt = printf("x: %x\n", 17);
-	//printf("x, len: %d\n", rslt);
-	//rslt = printf("#x: %#x\n", 17);
-	//printf("#x, len: %d\n", rslt);
-	//printf("\n");
+	ft_printf("___USE OF (%%x) VARIABLE INTERPOLATION___\n");
+	ft_printf("_FLAGS: (%%#x)\n");
+	rslt = ft_printf("(%x) - (%#x) - (%x) - (%#x)\n", 42, 42, UINT_MAX, UINT_MAX);
+	ft_printf("_LEN: %i\n", rslt);
+	rslt = printf("(%x) - (%#x) - (%x) - (%#x)\n", 42, 42, UINT_MAX, UINT_MAX);
+	ft_printf("_LEN: %i\n", rslt);
+	printf("\n");
 
 	//%X
 	//rslt = printf("X: %X\n", 17);

@@ -39,9 +39,9 @@ int	put_interp_var(t_interp *plh, va_list vargs)
 	if (plh->specifier == 'u')
 		return (ft_printnbr_u_base(plh, va_arg(vargs, unsigned int), base10));
 	if (plh->specifier == 'x')
-		return (ft_printnbr_x_base(plh, va_arg(vargs, int), base16lower));
+		return (ft_printnbr_x_base(plh, va_arg(vargs, unsigned int), base16lower));
 	if (plh->specifier == 'X')
-		return (ft_printfnbr_xupp_base(plh, va_arg(vargs, int), base16upper));
+		return (ft_printfnbr_xupp_base(plh, va_arg(vargs, unsigned int), base16upper));
 	if (plh->specifier == '%')
 		return (ft_printchar(plh, '%'));
 	return (0);
