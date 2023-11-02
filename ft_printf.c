@@ -50,25 +50,27 @@ int	ft_printf(const char *str, ...)
 	va_list		vargs;
 	size_t		out_len;
 	size_t		count;
-	size_t		i;
 	t_interp	plh;
 
 	va_start(vargs, str);
-	i = 0;
 	count = 0;
 	out_len = 0;
-	while (str[i] != '\0')
+	while (*str != '\0')
 	{
-		if (str[i] == '%')
+		if (*str == '%')
 		{
-			i += update_interp_var((str + i), &plh);
+			str += update_interp_var((str), &plh);
 			if (check_interp_var(&plh) == -1)
 				return (-1);
 			out_len += put_interp_var(&plh, vargs);
 		}
 		else
-			count += write(1, &str[i], 1);
-		i++;
+		{
+			if (write(1, &*str, 1) == -1)
+					return (-1);
+			count++;
+		}
+		str++;
 	}
 	va_end(vargs);
 	return (out_len + count);

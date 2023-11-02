@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-size_t	ft_printchar(t_interp *plh, char c)
+int	ft_printchar(t_interp *plh, char c)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
 	if (plh->space_flag == 1)
@@ -23,9 +23,9 @@ size_t	ft_printchar(t_interp *plh, char c)
 	return (len);
 }
 
-size_t	ft_printstr(t_interp *plh, char *s)
+int	ft_printstr(t_interp *plh, char *s)
 {
-	size_t	len;
+	int		len;
 	size_t	i;
 
 	len = 0;
@@ -39,7 +39,7 @@ size_t	ft_printstr(t_interp *plh, char *s)
 	return (len);
 }
 
-void	ft_putnbr_base(unsigned long long nb, char *b, size_t *sb, size_t *len)
+void	ft_putnbr_base(unsigned long long nb, char *b, size_t *sb, int *len)
 {
 	char	c;
 

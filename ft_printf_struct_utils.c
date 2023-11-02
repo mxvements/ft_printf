@@ -76,7 +76,7 @@ void	reset_interp_var(t_interp *plh)
  */
 int	check_interp_var(t_interp *plh)
 {
-	if (plh->specifier == '\0')
+	if (plh->specifier == '0')
 		return (-1);
 	if (plh->hash_flag == 1 && (plh->specifier != 'x' && plh->specifier != 'X'))
 		return (-1);

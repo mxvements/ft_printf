@@ -60,6 +60,10 @@ int	main(void)
 	ft_printf("_LEN: %d\n", rslt);
 	rslt = printf("(%c) _ (%c) _ (%c) _ (%c) _ (%c) _ (%c)\n", 'a', '\t', '\0', '\x7F', CHAR_MIN, CHAR_MAX);
 	printf("_LEN: %d\n", rslt);
+	//strict
+	ft_printf("_STRICT\n");
+	ft_printf("%cc%cc%c\n", 'a', '\t', 'b');
+	printf("%cc%cc%c\n", 'a', '\t', 'b');
 	printf("\n");
 
 	//%d
