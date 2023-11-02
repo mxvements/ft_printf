@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luciama2 <luciama2@student.42madrid>       +#+  +:+       +#+        */
+/*   By: lmmielgo <lmmielgo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 18:24:13 by luciama2          #+#    #+#             */
-/*   Updated: 2023/10/27 18:24:17 by luciama2         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:55:44 by lmmielgo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_printnbr_u_base(t_interp *plh, unsigned int nbr, char *base)
 	len = 0;
 	if (plh->plus_flag == 1)
 		len += write(1, &(plh->sign), 1);
-	ft_putnbr_base((unsigned long long)nbr, base, &base_size, &len);
+	ft_putnbr_base((unsigned long long)nb, base, &base_size, &len);
 	return (len);
 }
 
