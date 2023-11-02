@@ -30,10 +30,12 @@ size_t	ft_printstr(t_interp *plh, char *s)
 
 	len = 0;
 	i = 0;
+	if (!s)
+		return (write(1, "(null)", 6));
 	if (plh->space_flag == 1)
 		len += write(1, " ", 1);
-	while (s[i++] != '\0')
-		len += write(1, &s[i], 1);
+	while (s[i] != '\0')
+		len += write(1, &s[i++], 1);
 	return (len);
 }
 

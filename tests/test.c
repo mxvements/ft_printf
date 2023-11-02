@@ -51,7 +51,7 @@ int	main(void)
 	
 	*/
 
-	int	rslt;
+	int		rslt;
 
 	//%c
 	ft_printf("___USE OF (%%c) VARIABLE INTERPOLATION___\n");
@@ -60,19 +60,37 @@ int	main(void)
 	ft_printf("_LEN: %d\n", rslt);
 	rslt = printf("(%c) _ (%c) _ (%c) _ (%c) _ (%c) _ (%c)\n", 'a', '\t', '\0', '\x7F', CHAR_MIN, CHAR_MAX);
 	printf("_LEN: %d\n", rslt);
+	printf("\n");
 
 	//%d
-	ft_printf("\n___USE OF (%%d) VARIABLE INTERPOLATION___\n");
+	ft_printf("___USE OF (%%d) VARIABLE INTERPOLATION___\n");
 	ft_printf("_FLAGS: (%% d), (%%+d), ' ' is ignored when '+' is present_\n");
-	rslt = ft_printf("(%d) _ (%d)\n", INT_MIN, INT_MAX);
+	rslt = ft_printf("(%d) _ (% d) _ (% d) _ (%+d)\n", INT_MIN, INT_MAX, INT_MIN, INT_MAX);
 	ft_printf("_LEN: %d\n", rslt);
-	rslt = printf("(%d) _ (%d)\n", INT_MIN, INT_MAX);
+	rslt = printf("(%d) _ (% d) _ (% d) _ (%+d)\n", INT_MIN, INT_MAX, INT_MIN, INT_MAX);
 	ft_printf("_LEN: %d\n", rslt);
 	printf("\n");
 
 	//%i
+	ft_printf("___USE OF (%%i) VARIABLE INTERPOLATION___\n");
+	ft_printf("_FLAGS: (%% i), (%%+i), ' ' is ignored when '+' is present_\n");
+	rslt = ft_printf("(%i) _ (% i) _ (% i) _ (%+i)\n", INT_MIN, INT_MAX, INT_MIN, INT_MAX);
+	ft_printf("_LEN: %i\n", rslt);
+	rslt = printf("(%i) _ (% i) _ (% i) _ (%+i)\n", INT_MIN, INT_MAX, INT_MIN, INT_MAX);
+	ft_printf("_LEN: %i\n", rslt);
+	printf("\n");
 
 	//%s
+	char	*emptystr = "";
+	char	*smplestr = "This is a simple test.\tSecond sentence.";
+	char	*nullstr = NULL;
+	ft_printf("___USE OF (%%s) VARIABLE INTERPOLATION___\n");
+	ft_printf("_FLAGS: n/a, ' ' results in undefined behavior\n");
+	rslt = ft_printf("(%s) - (%s) - (NULL %s)\n", emptystr, smplestr, nullstr);
+	ft_printf("_LEN: %i\n", rslt);
+	rslt = printf("(%s) - (%s) - (NULL %s)\n", emptystr, smplestr, nullstr);
+	ft_printf("_LEN: %i\n", rslt);
+	printf("\n");
 
 	//%u
 

@@ -62,9 +62,9 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i += update_interp_var((str + i), &plh);
-			out_len += put_interp_var(&plh, vargs);
 			if (check_interp_var(&plh) == -1)
 				return (-1);
+			out_len += put_interp_var(&plh, vargs);
 		}
 		else
 			count += write(1, &str[i], 1);

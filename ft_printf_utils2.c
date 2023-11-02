@@ -47,7 +47,7 @@ size_t	ft_printnbr_base(t_interp *plh, int nbr, char *base)
 	len = 0;
 	if (plh->plus_flag == 1)
 		len += write(1, &(plh->sign), 1);
-	if (plh->space_flag == 1)
+	if (plh->space_flag == 1 && plh->plus_flag == 0)
 		len += write(1, " ", 1);
 	ft_putnbr_base((unsigned long long)nb, base, &base_size, &len);
 	return (len);
