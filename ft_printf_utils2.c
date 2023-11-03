@@ -114,6 +114,7 @@ int	ft_printnbr_x_base(t_interp *plh, unsigned int nbr, char *base)
 	ft_putnbr_base((unsigned long long)nb, base, &base_size, &len);
 	return (len);
 }
+
 /** ft_printnbr_xupp_base(t_interp *plh, unsinged int nbr, char *base)
  * @brief Function to handle the 'X' specifier on the printf function.
  * It also handles the applicable flags for the specifier (only '#').
