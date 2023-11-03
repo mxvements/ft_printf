@@ -60,6 +60,8 @@ int	ft_printf(const char *str, ...)
 	va_start(vargs, str);
 	count = 0;
 	out_len = 0;
+	if (!str)
+		return (-1);
 	while (*str != '\0')
 	{
 		if (*str == '%')
@@ -70,7 +72,7 @@ int	ft_printf(const char *str, ...)
 			out_len += put_interp_var(&plh, vargs);
 		}
 		else
-			count += write(1, &*str, 1) == -1;
+			count += write(1, &*str, 1);
 		str++;
 	}
 	va_end(vargs);
