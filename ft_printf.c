@@ -41,10 +41,15 @@
  * 		After the call to va_end(), the variable argument_list is undefined. 	
  */
 
-/* La funcion printf retorna el numero de caracteres impresos o un valor
- * negativo si ocurre un error. 
-*/
-
+/** int ft_printf(const char str, ...)
+ * @brief Function to printf a 'format' string on the standard output using
+ * interpolated variables.
+ * Available specifiers: 'cspdiuxX%'
+ * Available flags: '# +'
+ * @param str, format string to print on the strandar output
+ * @param ... , variadic param
+ * @return int, length of the printed string on the standard output
+ */
 int	ft_printf(const char *str, ...)
 {
 	va_list		vargs;
@@ -65,11 +70,7 @@ int	ft_printf(const char *str, ...)
 			out_len += put_interp_var(&plh, vargs);
 		}
 		else
-		{
-			if (write(1, &*str, 1) == -1)
-					return (-1);
-			count++;
-		}
+			count += write(1, &*str, 1) == -1;
 		str++;
 	}
 	va_end(vargs);
