@@ -129,8 +129,6 @@ At 42 School, it is expected that almost every project is written in accordance 
 ```
 ## Aknowledgments
 - This video by Nikito: https://www.youtube.com/watch?v=Hb2m7htiKWM
-# Contact
-```
-luciama2@student.42madrid.com
-```
+
 # License
+[MIT License](https://github.com/mxvements/ft_license/blob/main/LICENSE.txt)
