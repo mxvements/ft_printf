@@ -11,9 +11,7 @@
 </div>
 
 # ft_printf
-ft_printf -  because ft_putnbr() and ft_putstr() aren’t enough
-The goal of this project is pretty straightforward: to recode printf().
-The projects is about learning variable numbber of arguments (variadic functions), as well as adding a couple more functions to the ft_libft.
+The goal of this project is pretty straightforward: to recode printf(). The projects is about learning variable numbber of arguments (variadic functions), as well as adding a couple more functions to the ft_libft.
 
 | Program name | libftprintf.a |
 | ----- | ------|
@@ -58,7 +56,6 @@ git clone git@github.com:mxvements/ft_printf.git
 `make clean` - delete all *.o files
 `make fclean` - delete all *.o & *.a (executable) files
 `make re` - use fclean + all, recompile printf
-`make tclean` - added rule, delete all *.o & clean *.out file from test
 ```
 3 - To incluide it in your code, include the header
 ````
