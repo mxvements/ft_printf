@@ -56,6 +56,7 @@ git clone git@github.com:mxvements/ft_printf.git
 `make clean` - delete all *.o files
 `make fclean` - delete all *.o & *.a (executable) files
 `make re` - use fclean + all, recompile printf
+`make tclean` - added rule, delete all *.o & clean *.out file from test
 ```
 3 - To incluide it in your code, include the header
 ````
